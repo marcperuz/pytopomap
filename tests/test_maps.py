@@ -6,7 +6,6 @@ Created on Wed Jun  2 16:16:39 2021
 @author: peruzzetto
 """
 
-import matplotlib
 import os
 
 import numpy as np
@@ -47,6 +46,6 @@ def z_hill(x, y):
 def test_maps():
     plot_maps(x, y, z_hill(x, y), np.stack((data_hill_1(x, y), data_hill_2(x, y)), axis=-1), np.array([0.1, 0.2]), 'Test', temporary_folder)
     assert len(os.listdir(temporary_folder)) == 2
-    os.remove(f"{temporary_folder}\Test_0000.png")
-    os.remove(f"{temporary_folder}\Test_0001.png")
+    os.remove(os.path.join(temporary_folder, "Test_0000.png"))
+    os.remove(os.path.join(temporary_folder, "Test_0001.png"))
     os.rmdir(temporary_folder)
