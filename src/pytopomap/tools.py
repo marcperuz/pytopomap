@@ -11,7 +11,6 @@ import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
-import seaborn as sns
 
 BOLD_CONTOURS_INTV = [
     0.1,
