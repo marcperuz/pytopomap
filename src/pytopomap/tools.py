@@ -32,11 +32,11 @@ NB_BOLD_CONTOURS = 3
 
 
 def centered_map(
-    cmap: str, 
-    vmin: float, 
-    vmax: float, 
+    cmap: str,
+    vmin: float,
+    vmax: float,
     ncolors: int = 256
-    ) -> matplotlib.colors.LinearSegmentedColormap :
+) -> matplotlib.colors.LinearSegmentedColormap:
     """
     Create centered colormap.
 
@@ -73,11 +73,11 @@ def centered_map(
 
 
 def get_contour_intervals(
-    zmin: float, 
-    zmax: float, 
-    nb_bold_contours: int = None, 
+    zmin: float,
+    zmax: float,
+    nb_bold_contours: int = None,
     nb_thin_contours: int = None
-    ) -> tuple[float, float]:
+) -> tuple[float, float]:
     """
     Provides the intervals for thin and bold contour lines
 
@@ -119,19 +119,19 @@ def get_contour_intervals(
             thin_intv = thin_intv * 2
     else:
         thin_intv = bold_intv / nb_thin_contours
-    
+
     return bold_intv, thin_intv
 
 
 def auto_uniform_grey(
-    z: np.ndarray, 
-    vert_exag: float, 
-    azdeg: int = 315, 
-    altdeg: int = 45, 
-    dx: float = 1., 
-    dy: float = 1., 
+    z: np.ndarray,
+    vert_exag: float,
+    azdeg: int = 315,
+    altdeg: int = 45,
+    dx: float = 1.,
+    dy: float = 1.,
     std_threshold: float = 0.01
-    ) -> float | None :
+) -> float:
     """
     Detect if shading must be applied to topography or not (uniform grey). The
     criterion in colors.LightSource.hillshade is the difference between min
@@ -141,7 +141,7 @@ def auto_uniform_grey(
     ----------
     z : np.ndarray
         Altitude of each point of the topography.
-    
+
     vert_exag : float
         Vertical exaggeration factor for hillshading.
 
@@ -150,10 +150,10 @@ def auto_uniform_grey(
 
     altdeg : int, optional
         Altitude angle for light source (degrees above horizon). The default is 45
-    
+
     dx : float, optional
         Cell size of the x axis. The default is 1.0.
-    
+
     dy : float, optional
         Cell size of the y axis. The default is 1.0.
 
@@ -195,14 +195,14 @@ def auto_uniform_grey(
 
 
 def colorbar(
-    mappable, 
-    ax=None, 
-    cax=None, 
-    size: str = "5%", 
-    pad: float = 0.1, 
-    position: str = "right", 
+    mappable,
+    ax=None,
+    cax=None,
+    size: str = "5%",
+    pad: float = 0.1,
+    position: str = "right",
     **kwargs: dict
-    ) -> matplotlib.colorbar.Colorbar :
+) -> matplotlib.colorbar.Colorbar:
     """
     Create nice colorbar matching height/width of axe.
 
@@ -222,7 +222,7 @@ def colorbar(
         Position of the colorbar relative to the parent axis. Options: 'right', 'left', 'top', 'bottom'. The default is "right".
     **kwargs : dict
         Additional keyword arguments passed to "fig.colorbar()".
-    
+
     Returns
     -------
     matplotlib.colorbar.Colorbar
