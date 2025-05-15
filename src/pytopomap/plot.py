@@ -13,7 +13,6 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
-import seaborn as sns
 
 from pytopomap.tools import centered_map, get_contour_intervals, auto_uniform_grey, colorbar
 
