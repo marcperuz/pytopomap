@@ -27,8 +27,22 @@ BOLD_CONTOURS_INTV = [
     500,
     1000,
 ]
+"""
+Possible intervals between bold alitude contour levels.
+
+Intervals between bold altitude contour levels will be chosen among them, if not speficied.
+""" 
 NB_THIN_CONTOURS = 10
+"""
+Default number of thin altitude levels between two bold altitude levels.
+"""
 NB_BOLD_CONTOURS = 3
+"""
+Default number of bold level contours on a plot.
+
+This value is used to choose the adequate interval in BOLD_CONTOURS_INTV, such
+that there is at least NB_BOLD_CONTOURS bold contours on the plot.
+"""
 
 
 def centered_map(
