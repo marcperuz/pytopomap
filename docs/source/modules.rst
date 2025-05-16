@@ -1,7 +1,19 @@
 pytopomap
 =========
 
-.. toctree::
-   :maxdepth: 4
+The "tools" module
+----------------------
 
-   pytopomap
+.. automodule:: pytopomap.tools
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+
+The "plot" module
+---------------------
+
+.. automodule:: pytopomap.plot
+   :members:
+   :show-inheritance:
+   :undoc-members:
