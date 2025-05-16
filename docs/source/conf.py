@@ -21,10 +21,12 @@ sys.path.insert(0, os.path.abspath('../../src/'))
 print(sys.path)
 
 extensions = [
+    'autoapi.extension',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon', # for Google/NumPy style docstrings
 ]
 
+autoapi_dirs = ['../../src']
 
 # Napoleon settings
 napoleon_google_docstring = True

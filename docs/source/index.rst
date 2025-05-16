@@ -10,5 +10,4 @@ pytopomap documentation
    :maxdepth: 2
    :caption: Contents:
 
-   API
-
+   quickstart
