@@ -11,3 +11,4 @@ pytopomap documentation
    :caption: Contents:
 
    quickstart
+   auto_gallery/index
