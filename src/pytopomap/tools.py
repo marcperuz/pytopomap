@@ -27,22 +27,8 @@ BOLD_CONTOURS_INTV = [
     500,
     1000,
 ]
-"""
-Possible intervals between bold alitude contour levels.
-
-Intervals between bold altitude contour levels will be chosen among them, if not speficied.
-""" 
 NB_THIN_CONTOURS = 10
-"""
-Default number of thin altitude levels between two bold altitude levels.
-"""
 NB_BOLD_CONTOURS = 3
-"""
-Default number of bold level contours on a plot.
-
-This value is used to choose the adequate interval in BOLD_CONTOURS_INTV, such
-that there is at least NB_BOLD_CONTOURS bold contours on the plot.
-"""
 
 
 def centered_map(
@@ -265,3 +251,56 @@ def colorbar(
         cax.yaxis.tick_left()
         cax.xaxis.set_label_position("left")
     return cc
+
+
+def read_raster(file):
+    if file.endswith(".asc") or file.endswith(".txt"):
+        return read_ascii(file)
+    elif file.endswith(".tif") or file.endswith(".tif"):
+        return read_tiff(file)
+
+
+def read_tiff(file):
+    import rasterio
+
+    with rasterio.open(file, "r") as src:
+        dem = src.read(1)
+        ny, nx = dem.shape
+        x = np.linspace(src.bounds.left, src.bounds.right, nx)
+        y = np.linspace(src.bounds.bottom, src.bounds.top, ny)
+    return x, y, dem
+
+
+def read_ascii(file):
+    """
+    Read ascii grid file to numpy ndarray.
+
+    Parameters
+    ----------
+    file : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
+    dem = np.loadtxt(file, skiprows=6)
+    grid = {}
+    with open(file, "r") as fid:
+        for i in range(6):
+            tmp = fid.readline().split()
+            grid[tmp[0]] = float(tmp[1])
+    try:
+        x0 = grid["xllcenter"]
+        y0 = grid["yllcenter"]
+    except KeyError:
+        x0 = grid["xllcorner"]
+        y0 = grid["yllcorner"]
+    nx = int(grid["ncols"])
+    ny = int(grid["nrows"])
+    dx = dy = grid["cellsize"]
+    x = np.linspace(x0, x0 + (nx - 1) * dx, nx)
+    y = np.linspace(y0, y0 + (ny - 1) * dy, ny)
+
+    return x, y, dem
