@@ -422,7 +422,7 @@ def plot_data_on_topo(
     alpha_mask: float = None,
     color_mask: str = "k",
     xlims: int | float = None,
-    ylims: int | float = None,
+    ylims: int | float = None
     ) -> matplotlib.axes._axes.Axes:
     """
     Plot array data on topo.
