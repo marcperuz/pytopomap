@@ -14,7 +14,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
-from pytopomap.tools import centered_map, get_contour_intervals, auto_uniform_grey, colorbar
+from pytopomap.tools import centered_map, get_contour_intervals, auto_uniform_grey
+# from pytopomap.tools import colorbar
 
 
 def plot_topo(
