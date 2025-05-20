@@ -27,7 +27,7 @@ def plot_topo_3D(
     y: np.ndarray,
     ndv: int | float = -9999,
     vert_exag: float = 1,
-    light_source: tuple[int] = (90, 20),
+    light_source: tuple[int, int] = None,
     add_walls: bool = True,
     add_floor: bool = True,
     saving_path: str = None,
@@ -49,7 +49,7 @@ def plot_topo_3D(
     vert_exag : float, optional
         Vertical exaggeration factor. The default is 1.
     light_source : tuple[int], optional
-        Light source direction for shading (azimuth, degrees from North and altitude, degrees from horizon). The default is (90, 45).
+        Light source direction for shading (azimuth, degrees from North and altitude, degrees from horizon). The default is None.
     add_walls : bool, optional
         If True, add walls under the figure. The default is True
     add_floor : bool, optional
@@ -68,8 +68,13 @@ def plot_topo_3D(
 
     corrz[corrz == ndv] = np.nan
 
-    az = np.radians(light_source[0])
-    alt = np.radians(light_source[1])
+    if light_source is not None:
+        az = np.radians(light_source[0])
+        alt = np.radians(light_source[1])
+    else:
+        az = np.radians(90)
+        alt = np.radians(45)
+    
 
     fig = go.Figure(data=[
         go.Surface(
@@ -244,7 +249,7 @@ def plot_data_on_topo_3D(
     data: np.ndarray,
     ndv: int | float = -9999,
     vert_exag: float = 1,
-    light_source: tuple[int] = (90, 20),
+    light_source: tuple[int, int] = None,
     cmap: str = None,
     minval: int | float = None,
     maxval: int | float = None,
@@ -270,7 +275,7 @@ def plot_data_on_topo_3D(
     ndv : int or float, optional
         No-data value in the elevation array. The default is -9999.
     light_source : tuple[int], optional
-        Light source direction for shading (azimuth, degrees from North and altitude, degrees from horizon). The default is (90, 45).
+        Light source direction for shading (azimuth, degrees from North and altitude, degrees from horizon). The default is None.
     cmap : str, optional
         Name of the colormap to use. If None, use "Hot" or "Rdbu. The default is None.
     minval : int or float, optional
@@ -315,6 +320,13 @@ def plot_data_on_topo_3D(
             cmap = 'Rdbu'
         else:
             cmap = 'Hot'
+    
+    if light_source is not None:
+        az = np.radians(light_source[0])
+        alt = np.radians(light_source[1])
+    else:
+        az = np.radians(90)
+        alt = np.radians(45)
 
     az = np.radians(light_source[0])
     alt = np.radians(light_source[1])

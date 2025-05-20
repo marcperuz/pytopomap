@@ -253,14 +253,22 @@ def colorbar(
     return cc
 
 
-def read_raster(file):
-    if file.endswith(".asc") or file.endswith(".txt"):
-        return read_ascii(file)
-    elif file.endswith(".tif") or file.endswith(".tif"):
-        return read_tiff(file)
+def read_tiff(
+    file
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Read tiff file to numpy ndarray.
 
+    Parameters
+    ----------
+    file : str
+        Path to the tiff file.
 
-def read_tiff(file):
+    Returns
+    -------
+    tuple[np.ndarray, np.ndarray, np.ndarray]
+        x, y, z values of the tiff file.
+    """
     import rasterio
 
     with rasterio.open(file, "r") as src:
@@ -271,19 +279,21 @@ def read_tiff(file):
     return x, y, dem
 
 
-def read_ascii(file):
+def read_ascii(
+    file
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Read ascii grid file to numpy ndarray.
 
     Parameters
     ----------
-    file : TYPE
-        DESCRIPTION.
+    file : str
+        Path to the ascii file.
 
     Returns
     -------
-    None.
-
+    tuple[np.ndarray, np.ndarray, np.ndarray]
+        x, y, z values of the ascii file.
     """
     dem = np.loadtxt(file, skiprows=6)
     grid = {}
@@ -304,3 +314,25 @@ def read_ascii(file):
     y = np.linspace(y0, y0 + (ny - 1) * dy, ny)
 
     return x, y, dem
+
+
+def read_raster(
+    file
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Extract x, y, z values of a tif/ascii file.
+
+    Parameters
+    ----------
+    file : str
+        Path to the file.
+
+    Returns
+    -------
+    tuple[np.ndarray, np.ndarray, np.ndarray]
+        x, y, z values of the file.
+    """
+    if file.endswith(".asc") or file.endswith(".txt"):
+        return read_ascii(file)
+    elif file.endswith(".tif") or file.endswith(".tif"):
+        return read_tiff(file)

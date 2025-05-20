@@ -242,7 +242,7 @@ def plot_imshow(
     aspect: str | float = None,
     ) -> matplotlib.axes._axes.Axes:
     """
-    plt.imshow data with some pre-processing
+    plt.imshow data with some pre-processing.
 
     Parameters
     ----------
@@ -403,7 +403,7 @@ def plot_data_on_topo(
     z: np.ndarray,
     data: np.ndarray,
     axe: matplotlib.axes._axes.Axes = None,
-    figsize: tuple[float] = (15 / 2.54, 15 / 2.54),
+    figsize: tuple[float] = None,
     cmap: str = None,
     minval: int | float = None,
     maxval: int | float = None,
@@ -422,13 +422,13 @@ def plot_data_on_topo(
     alpha_mask: float = None,
     color_mask: str = "k",
     xlims: int | float = None,
-    ylims: int | float = None
+    ylims: int | float = None,
     ) -> matplotlib.axes._axes.Axes:
     """
     Plot array data on topo.
 
     Parameters
-    -------
+    ----------
     x : np.ndarray
         1D array of X coordinates.
     y : np.ndarray
