@@ -25,7 +25,6 @@ print(sys.path)
 extensions = [
     'autoapi.extension',
     'sphinx.ext.autodoc',
-    'sphinx_gallery.gen_gallery',
     'sphinx.ext.napoleon', # for Google/NumPy style docstrings
 ]
 
@@ -46,16 +45,6 @@ napoleon_use_rtype = True
 napoleon_preprocess_types = False
 napoleon_type_aliases = None
 napoleon_attr_annotations = True
-
-# sphinx-gallery configuration
-sphinx_gallery_conf = {
-    # path to your example scripts
-    'examples_dirs': ['../../examples'],
-    # path to where to save gallery generated output
-    'gallery_dirs': ['auto_gallery'],
-    # specify that examples should be ordered according to filename
-    'within_subsection_order': FileNameSortKey,
-}
 
 templates_path = ['_templates']
 exclude_patterns = []
