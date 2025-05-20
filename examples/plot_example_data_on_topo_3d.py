@@ -4,8 +4,6 @@ plot: plot_data_on_topo
 
 plot_data_on_topo example:
 """
-import matplotlib.pyplot as plt
-
 from pytopomap.tools import read_tiff
 
 from pytopomap.plot_3d import plot_data_on_topo_3D
