@@ -4,6 +4,14 @@ Test function for plot_3D
 Test for plot_topo_3d.
 
 .. code-block:: python
+
+	import matplotlib.pyplot as plt
+
+	from pytopomap.tools import read_tiff
+
+	from pytopomap.plot_3d import plot_topo_3D
+
+
 	url = r"https://raw.githubusercontent.com/marcperuz/pytopomap/main/data/z.tif"
 
 	x, y, z = read_tiff(url)
@@ -12,11 +20,16 @@ Test for plot_topo_3d.
 
 .. raw:: html
 	:file: ..\\..\\examples\\output\\topography.html
-
-
+	
 Test for plot_data_on_topo_3D.
 	
 .. code-block:: python
+
+	import matplotlib.pyplot as plt
+
+	from pytopomap.tools import read_tiff
+
+	from pytopomap.plot_3d import plot_data_on_topo_3D
 
 	url_topo = r"https://raw.githubusercontent.com/marcperuz/pytopomap/main/data/z.tif"
 	url_data = r"https://raw.githubusercontent.com/marcperuz/pytopomap/main/data/h_deposits.tif"

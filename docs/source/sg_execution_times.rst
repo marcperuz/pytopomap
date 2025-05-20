@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:06.379** total execution time for 3 files **from all galleries**:
+**00:03.359** total execution time for 5 files **from all galleries**:
 
 .. container::
 
@@ -32,12 +32,18 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_gallery_plot_exemple_data_on_topo.py` (``..\..\examples\plot_exemple_data_on_topo.py``)
-     - 00:06.379
+   * - :ref:`sphx_glr_auto_gallery_plot_example_data_on_topo_3d.py` (``..\..\examples\plot_example_data_on_topo_3d.py``)
+     - 00:03.359
      - 0.0
-   * - :ref:`sphx_glr_auto_gallery_plot_exemple_data.py` (``..\..\examples\plot_exemple_data.py``)
+   * - :ref:`sphx_glr_auto_gallery_plot_example_data.py` (``..\..\examples\plot_example_data.py``)
      - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_auto_gallery_plot_exemple_topo.py` (``..\..\examples\plot_exemple_topo.py``)
+   * - :ref:`sphx_glr_auto_gallery_plot_example_data_on_topo.py` (``..\..\examples\plot_example_data_on_topo.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_gallery_plot_example_topo.py` (``..\..\examples\plot_example_topo.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_gallery_plot_example_topo_3d.py` (``..\..\examples\plot_example_topo_3d.py``)
      - 00:00.000
      - 0.0
