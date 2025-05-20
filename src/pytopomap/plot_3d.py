@@ -5,7 +5,7 @@
 This example doesn't do much, it just makes a simple plot
 """
 
-# % 
+# %
 # Test sub section
 # -------------------------
 #
@@ -30,7 +30,8 @@ def plot_topo_3D(
     light_source: tuple[int] = (90, 20),
     add_walls: bool = True,
     add_floor: bool = True,
-    saving_path: str = None
+    saving_path: str = None,
+    auto_open: bool = False
 ) -> None:
     """
     Plot 3D topography with hillshading.
@@ -55,6 +56,8 @@ def plot_topo_3D(
         If True, add floor under the figure. The default is True
     saving_path : str, optional
         Folder path to save the html file. If None file saved in source folder. The default is None.
+    auto_open : bool, optional
+        If True, open the result. The default is False.
 
     Returns
     -------
@@ -134,9 +137,9 @@ def plot_topo_3D(
 
     if saving_path is not None:
         fig.write_html(os.path.join(
-            saving_path, "topography.html"), auto_open=True)
+            saving_path, "topography.html"), auto_open=auto_open)
     else:
-        fig.write_html("topography.html", auto_open=True)
+        fig.write_html("topography.html", auto_open=auto_open)
 
     return None
 
@@ -150,7 +153,8 @@ def plot_imshow_3D(
     maxval: int | float = None,
     minval_abs: float = None,
     vert_exag: float = 1.,
-    saving_path: str = None
+    saving_path: str = None,
+    auto_open: bool = False
 ) -> None:
     """
     3D imshow data
@@ -175,6 +179,8 @@ def plot_imshow_3D(
         Vertical exaggeration factor. The default is 1.
     saving_path : str, optional
         Folder path to save the html file. If None file saved in source folder. The default is None.
+    auto_open : bool, optional
+        If True, open the result. The default is False.
 
     Returns
     -------
@@ -224,9 +230,9 @@ def plot_imshow_3D(
 
     if saving_path is not None:
         fig.write_html(os.path.join(
-            saving_path, "topography.html"), auto_open=True)
+            saving_path, "data.html"), auto_open=auto_open)
     else:
-        fig.write_html("data.html", auto_open=True)
+        fig.write_html("data.html", auto_open=auto_open)
 
     return None
 
@@ -245,7 +251,8 @@ def plot_data_on_topo_3D(
     minval_abs: float = None,
     add_walls: bool = True,
     add_floor: bool = True,
-    saving_path: str = None
+    saving_path: str = None,
+    auto_open: bool = False
 ) -> None:
     """
     Plot 3D array data on topo.
@@ -278,6 +285,8 @@ def plot_data_on_topo_3D(
         If True, add floor under the figure. The default is True
     saving_path : str, optional
         Folder path to save the html file. If None file saved in source folder. The default is None.
+    auto_open : bool, optional
+        If True, open the result. The default is False.
 
     Returns
     -------
@@ -389,8 +398,8 @@ def plot_data_on_topo_3D(
 
     if saving_path is not None:
         fig.write_html(os.path.join(
-            saving_path, "data_on_topography.html"), auto_open=True)
+            saving_path, "data_on_topography.html"), auto_open=auto_open)
     else:
-        fig.write_html("data_on_topography.html", auto_open=True)
+        fig.write_html("data_on_topography.html", auto_open=auto_open)
 
     return None
