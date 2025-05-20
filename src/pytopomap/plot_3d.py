@@ -328,9 +328,6 @@ def plot_data_on_topo_3D(
         az = np.radians(90)
         alt = np.radians(45)
 
-    az = np.radians(light_source[0])
-    alt = np.radians(light_source[1])
-
     new_data = np.where(~np.isnan(f), f + z + 1, np.nan)
 
     fig = go.Figure(data=[
