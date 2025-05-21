@@ -1,8 +1,8 @@
 """
-plot: plot_topo
+Plot topgraphy
 ===========================
 
-plot_topo example:
+Here is an example to display a topography using plot_topo from the plot module.
 """
 import matplotlib.pyplot as plt
 
@@ -20,4 +20,8 @@ axe = plot_topo(z, x, y)
 plt.show()
 
 # %%
-# Little text.
+# It is possible to add many parameters to modify the display.
+
+axe = plot_topo(z, x, y, contour_step=10., vert_exag=1.5, sea_color='blue', sea_level=1, azdeg=180, altdeg=25)
+
+plt.show()

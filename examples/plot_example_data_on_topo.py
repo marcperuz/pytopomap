@@ -1,8 +1,8 @@
 """
-plot: plot_data_on_topo
+Plot data on topography
 ===========================
 
-plot_data_on_topo example:
+Here is an example to display data on topography using plot_data_on_topo from the plot module.
 """
 import matplotlib.pyplot as plt
 
@@ -21,4 +21,8 @@ axe = plot_data_on_topo(x, y, z, data, minval_abs=0.1)
 plt.show()
 
 # %%
-# Little text.
+# It is possible to add many parameters to modify the display.
+
+axe = plot_data_on_topo(x, y, z, data, minval=10, maxval=100,  cmap_intervals=[10, 50, 100])
+
+plt.show()

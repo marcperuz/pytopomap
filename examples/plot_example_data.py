@@ -1,7 +1,8 @@
 r"""
-plot: plot_imshow
+Plot data
 ===========================
-Here is an example of plot_imshow:
+
+Here is an example to display data using plot_imshow from the plot module.
 """
 import matplotlib.pyplot as plt
 
@@ -19,4 +20,8 @@ axe = plot_imshow(x, y, data)
 plt.show()
 
 # %%
-# Little text.
+# It is possible to add many parameters to modify the display.
+
+axe = plot_imshow(x, y, data, cmap="viridis", minval=20, maxval=100, cmap_intervals=[20, 40, 60, 80, 100])
+
+plt.show()
