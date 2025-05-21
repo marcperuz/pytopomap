@@ -213,7 +213,6 @@ def plot_topo(
                 extent=im_extent,
                 cmap=cmap_sea,
                 vmin=0.5,
-                origin="lower",
                 interpolation="none",
             )
 
