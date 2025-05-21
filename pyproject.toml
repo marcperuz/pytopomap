@@ -20,7 +20,7 @@ keywords = ["topography", "display"]
 dependencies = [
     "plotly"
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [project.optional-dependencies]
 test = ["pytest"]
