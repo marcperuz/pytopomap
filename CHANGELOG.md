@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v0.0.2](https://github.com/marcperuz/pytopomap/releases/tag/v0.0.2) - 2025-05-21 14:33:21+00:00
+
+Correct dependencies (seaborn, scipy and requests are not necessary)
+
+### Bug Fixes
+
+- plot:
+  - fix sea mask ([6f2deb0](https://github.com/marcperuz/pytopomap/commit/6f2deb0cea85200e61ae8ca3e93d99804c64e2ef))
+
 ## [v0.0.1](https://github.com/marcperuz/pytopomap/releases/tag/v0.0.1) - 2025-05-21 09:48:02+00:00
 
 *No description*
