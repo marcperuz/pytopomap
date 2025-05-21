@@ -1,6 +1,6 @@
 # pytopomap
 
-Documentation : https://pytopomap.readthedocs.io/en/latest/index.html
+Documentation : https://pytopomap.readthedocs.io/en/latest/
 
 - [Description](#description)
 - [Installation with pip](#installation-pip)
