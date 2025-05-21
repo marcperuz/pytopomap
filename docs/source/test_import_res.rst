@@ -19,7 +19,7 @@ Test for plot_topo_3d.
 	plot_topo_3D(z, x, y, saving_path=r"./output", auto_open=True)
 
 .. raw:: html
-	:file: r"https://raw.githubusercontent.com//marcperuz//pytopomap//main//examples//output//topography.html"
+	:file: https://raw.githubusercontent.com//marcperuz//pytopomap//main//examples//output//topography.html
 	
 Test for plot_data_on_topo_3D.
 	
@@ -40,4 +40,4 @@ Test for plot_data_on_topo_3D.
 	plot_data_on_topo_3D(x, y, z, data, saving_path=r"./output")
 	
 .. raw:: html
-	:file: ..\\..\\examples\\output\\data_on_topography.html
+	:file: https://raw.githubusercontent.com//marcperuz//pytopomap//main//examples//output//data_on_topography.html
