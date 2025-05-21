@@ -6,13 +6,15 @@
 import os
 import sys
 
+from sphinx_gallery.sorting import FileNameSortKey
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'pytopomap'
 copyright = '2025, Marc Peruzzetto'
 author = 'Marc Peruzzetto'
-release = '1.0.0'
+release = '0.0.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -23,6 +25,7 @@ print(sys.path)
 extensions = [
     'autoapi.extension',
     'sphinx.ext.autodoc',
+    'sphinx_gallery.gen_gallery',
     'sphinx.ext.napoleon', # for Google/NumPy style docstrings
 ]
 
@@ -43,6 +46,16 @@ napoleon_use_rtype = True
 napoleon_preprocess_types = False
 napoleon_type_aliases = None
 napoleon_attr_annotations = True
+
+# sphinx-gallery configuration
+sphinx_gallery_conf = {
+    # path to your example scripts
+    'examples_dirs': ['../../examples'],
+    # path to where to save gallery generated output
+    'gallery_dirs': ['auto_gallery'],
+    # specify that examples should be ordered according to filename
+    'within_subsection_order': FileNameSortKey,
+}
 
 templates_path = ['_templates']
 exclude_patterns = []

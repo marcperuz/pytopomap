@@ -12,3 +12,4 @@ pytopomap documentation
 
    quickstart
    test_import_res
+   auto_gallery/index
