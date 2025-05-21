@@ -20,6 +20,7 @@ import os
 import numpy as np
 
 import plotly.graph_objects as go
+import plotly.graph_objs._figure
 
 
 def plot_topo_3D(
