@@ -1,8 +1,7 @@
-"""
+r"""
 plot: plot_imshow
 ===========================
-
-plot_imshow example:
+Here is an example of plot_imshow:
 """
 import matplotlib.pyplot as plt
 
@@ -18,3 +17,6 @@ x, y, data = read_tiff(url)
 axe = plot_imshow(x, y, data)
 
 plt.show()
+
+# %%
+# Little text.

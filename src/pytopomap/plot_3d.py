@@ -13,6 +13,7 @@ This example doesn't do much, it just makes a simple plot
 # must begin with '# ' (note the space) including underlines below section
 # headers.
 
+import plotly
 import copy
 import os
 
@@ -32,7 +33,7 @@ def plot_topo_3D(
     add_floor: bool = True,
     saving_path: str = None,
     auto_open: bool = False
-) -> None:
+) -> plotly.graph_objs._figure.Figure:
     """
     Plot 3D topography with hillshading.
 
@@ -143,10 +144,8 @@ def plot_topo_3D(
     if saving_path is not None:
         fig.write_html(os.path.join(
             saving_path, "topography.html"), auto_open=auto_open)
-    else:
-        fig.write_html("topography.html", auto_open=auto_open)
-
-    return None
+    
+    return fig
 
 
 def plot_imshow_3D(
@@ -160,7 +159,7 @@ def plot_imshow_3D(
     vert_exag: float = 1.,
     saving_path: str = None,
     auto_open: bool = False
-) -> None:
+) -> plotly.graph_objs._figure.Figure:
     """3D imshow data
 
     jfdqsjf
@@ -237,10 +236,8 @@ def plot_imshow_3D(
     if saving_path is not None:
         fig.write_html(os.path.join(
             saving_path, "data.html"), auto_open=auto_open)
-    else:
-        fig.write_html("data.html", auto_open=auto_open)
     
-    return None
+    return fig
 
 
 def plot_data_on_topo_3D(
@@ -259,7 +256,7 @@ def plot_data_on_topo_3D(
     add_floor: bool = True,
     saving_path: str = None,
     auto_open: bool = False
-) -> None:
+) -> plotly.graph_objs._figure.Figure:
     """
     Plot 3D array data on topo.
 
@@ -409,7 +406,5 @@ def plot_data_on_topo_3D(
     if saving_path is not None:
         fig.write_html(os.path.join(
             saving_path, "data_on_topography.html"), auto_open=auto_open)
-    else:
-        fig.write_html("data_on_topography.html", auto_open=auto_open)
 
-    return None
+    return fig

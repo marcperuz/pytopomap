@@ -8,6 +8,9 @@ import sys
 
 from sphinx_gallery.sorting import FileNameSortKey
 
+import plotly.io as pio
+pio.renderers.default = 'sphinx_gallery'
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 

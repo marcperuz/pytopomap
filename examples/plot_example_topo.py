@@ -18,3 +18,6 @@ x, y, z = read_tiff(url)
 axe = plot_topo(z, x, y)
 
 plt.show()
+
+# %%
+# Little text.

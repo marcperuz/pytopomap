@@ -1,8 +1,8 @@
-"""
-plot: plot_topo
+r"""
+plot_3d: plot_topo_3d
 ===========================
 
-plot_topo example:
+plot_topo_3d example:
 """
 from pytopomap.tools import read_tiff
 
@@ -13,4 +13,8 @@ url = r"https://raw.githubusercontent.com/marcperuz/pytopomap/main/data/z.tif"
 
 x, y, z = read_tiff(url)
 
-fig = plot_topo_3D(z, x, y, saving_path=r"./output", auto_open=True)
+fig = plot_topo_3D(z, x, y)
+fig
+
+# %%
+# Little text.
