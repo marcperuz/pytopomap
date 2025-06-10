@@ -266,7 +266,7 @@ def plot_imshow(
     vmax : float, optional
         Alias for maxval. The default is None.
     alpha : float, optional
-        Transparency for the hillshading layer. The default is 1.
+        Transparency for the data layer. The default is 1.
     minval_abs : float, optional
         If set, masks values with absolute magnitude below this threshold. The default is None.
     cmap_intervals : tuple of int or float, optional
@@ -461,7 +461,7 @@ def plot_data_on_topo(
     topo_kwargs : dict, optional
         Additional keyword arguments passed to "plot_topo". The default is None.
     alpha : float, optional
-        Transparency for the hillshading layer. The default is 1.
+        Transparency for the data layer. The default is 1.
     plot_colorbar : bool, optional
         Whether to add a colorbar. The default is True.
     axecc : matplotlib.axes._axes.Axes, optional
