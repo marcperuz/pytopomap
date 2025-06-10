@@ -9,7 +9,6 @@ Created on Wed Jun  2 16:16:39 2021
 import matplotlib
 
 import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
 BOLD_CONTOURS_INTV = [
