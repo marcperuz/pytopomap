@@ -58,10 +58,12 @@ def centered_map(
     """
     p = vmax / (vmax - vmin)
     npos = int(ncolors * p)
-    method = getattr(plt.cm, cmap)
-
-    colors1 = method(np.linspace(0.0, 1, npos * 2))
-    colors2 = method(np.linspace(0.0, 1, (ncolors - npos) * 2))
+    if isinstance(cmap, list):
+        cmap_tmp = mcolors.LinearSegmentedColormap.from_list("tmp", cmap)
+    else:
+        cmap_tmp = matplotlib.colormaps[cmap]
+    colors1 = cmap_tmp(np.linspace(0.0, 1, npos * 2))
+    colors2 = cmap_tmp(np.linspace(0.0, 1, (ncolors - npos) * 2))
     colors = np.concatenate(
         (colors2[: ncolors - npos, :], colors1[npos:, :]), axis=0
     )

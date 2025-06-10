@@ -340,7 +340,10 @@ def plot_imshow(
         else:
             values = np.unique(f[~np.isnan(f)])
         n_values = len(values)
-        color_map = matplotlib.cm.get_cmap(cmap, n_values)
+        if isinstance(cmap, list):
+            color_map = mcolors.LinearSegmentedColormap.from_list('custom_cm', cmap, N=n_values)
+        else:
+            color_map = matplotlib.cm.get_cmap(cmap, n_values)
         bounds = np.zeros(n_values + 1)
         bounds[1:-1] = 0.5 * (values[1:] + values[:-1])
         bounds[0] = values[0] - 0.5
@@ -350,7 +353,10 @@ def plot_imshow(
         maxval = None
     else:
         if (maxval * minval >= 0) or np.isnan(maxval * minval):
-            color_map = matplotlib.colormaps[cmap]
+            if isinstance(cmap, list):
+                color_map = mcolors.LinearSegmentedColormap.from_list('custom_cm', cmap)
+            else:
+                color_map = matplotlib.colormaps[cmap]
         else:
             color_map = centered_map(cmap, minval, maxval)
 
