@@ -513,7 +513,7 @@ def plot_data_on_topo(
         cmap_mask = mcolors.ListedColormap([color_mask])
         cmap_mask.set_under(color="w", alpha=0)
         axe.imshow(
-            mask.transpose(),
+            np.flip(mask, axis=0),
             extent=im_extent,
             cmap=cmap_mask,
             vmin=0.5,
