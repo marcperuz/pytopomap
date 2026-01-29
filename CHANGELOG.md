@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## [v0.0.3](https://github.com/marcperuz/pytopomap/releases/tag/v0.0.3) - 2026-01-29 16:30:36+00:00
+
+*No description*
+
+### Feature
+
+- plot:
+  - add colormap from list of colors ([cb9c3a4](https://github.com/marcperuz/pytopomap/commit/cb9c3a418056e61ed85b7349e255ed4908f6ab99))
+
+### Bug Fixes
+
+- plot_data_on_topo:
+  - correct orientation of mask ([4fc1b2c](https://github.com/marcperuz/pytopomap/commit/4fc1b2cbbf3707310d9f97089e1338e5bb0dc84d))
+
+### Documentation
+
+- plot:
+  - correct description of alpha parameter ([513b9db](https://github.com/marcperuz/pytopomap/commit/513b9dbaade0fe6fab9bb1dd96c371737484a921))
+
+- examples:
+  - update example for plot_data_on_topo ([dde493b](https://github.com/marcperuz/pytopomap/commit/dde493b13dfe570e223458c92a6ca3457278a0a3))
+
 ## [v0.0.2](https://github.com/marcperuz/pytopomap/releases/tag/v0.0.2) - 2025-05-21 14:33:21+00:00
 
 Correct dependencies (seaborn, scipy and requests are not necessary)
