@@ -6,15 +6,17 @@ Created on Wed Jun  2 16:16:39 2021
 @author: peruzzetto
 """
 
-import matplotlib
 import copy
 import os
 
-import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
 import matplotlib.colors as mcolors
+import matplotlib.pyplot as plt
+import numpy as np
 
-from pytopomap.tools import centered_map, get_contour_intervals, auto_uniform_grey
+from pytopomap.tools import auto_uniform_grey, centered_map, get_contour_intervals
+import itertools
+
 # from pytopomap.tools import colorbar
 
 
@@ -22,27 +24,27 @@ def plot_topo(
     z: np.ndarray,
     x: np.ndarray,
     y: np.ndarray,
-    contour_step: float = None,
-    nlevels: int = None,
-    level_min: float = None,
+    contour_step: float | None = None,
+    nlevels: int | None = None,
+    level_min: float | None = None,
     step_contour_bold: float | str = "auto",
-    contour_labels_properties: dict = None,
+    contour_labels_properties: dict | None = None,
     label_contour: bool = True,
-    contour_label_effect: list = None,
+    contour_label_effect: list | None = None,
     axe: matplotlib.axes._axes.Axes = None,
-    vert_exag: float = 1.,
-    ndv: int | float = -9999,
+    vert_exag: float = 1.0,
+    ndv: float = -9999,
     uniform_grey: str = "auto",
-    contours_prop: dict = None,
-    contours_bold_prop: dict = None,
-    figsize: tuple[float] = None,
-    interpolation: str = None,
-    sea_level: int | float = 0,
-    sea_color: str = None,
-    alpha: float = 1.,
-    azdeg: int | float = 315,
-    altdeg: int | float = 45,
-    ) -> matplotlib.axes._axes.Axes: 
+    contours_prop: dict | None = None,
+    contours_bold_prop: dict | None = None,
+    figsize: tuple[float] | None = None,
+    interpolation: str | None = None,
+    sea_level: float = 0,
+    sea_color: str | None = None,
+    alpha: float = 1.0,
+    azdeg: float = 315,
+    altdeg: float = 45,
+) -> matplotlib.axes._axes.Axes:
     """
     Plot topography with hillshading.
 
@@ -126,7 +128,7 @@ def plot_topo(
         levels = np.linspace(level_min, np.nanmax(tmpz), nlevels)
 
     if axe is None:
-        fig, axe = plt.subplots(1, 1, figsize=figsize, layout="constrained")
+        _, axe = plt.subplots(1, 1, figsize=figsize, layout="constrained")
 
     axe.set_ylabel("Y (m)")
     axe.set_xlabel("X (m)")
@@ -163,24 +165,17 @@ def plot_topo(
     )
 
     if contours_prop is None:
-        contours_prop = dict(alpha=0.5, colors="k", linewidths=0.5)
+        contours_prop = {"alpha": 0.5, "colors": "k", "linewidths": 0.5}
     axe.contour(
-        x,
-        y,
-        np.flip(tmpz, axis=0),
-        extent=im_extent,
-        levels=levels,
-        **contours_prop
+        x, y, np.flip(tmpz, axis=0), extent=im_extent, levels=levels, **contours_prop
     )
 
     if contours_bold_prop is None:
-        contours_bold_prop = dict(alpha=0.8, colors="k", linewidths=0.8)
+        contours_bold_prop = {"alpha": 0.8, "colors": "k", "linewidths": 0.8}
 
     if step_contour_bold == "auto":
         if auto_bold_intv is None:
-            auto_bold_intv, _ = get_contour_intervals(
-                np.nanmin(tmpz), np.nanmax(tmpz)
-            )
+            auto_bold_intv, _ = get_contour_intervals(np.nanmin(tmpz), np.nanmax(tmpz))
         step_contour_bold = auto_bold_intv
 
     if step_contour_bold > 0:
@@ -194,7 +189,7 @@ def plot_topo(
             np.flip(tmpz, axis=0),
             extent=im_extent,
             levels=levels,
-            **contours_bold_prop
+            **contours_bold_prop,
         )
         if label_contour:
             if contour_labels_properties is None:
@@ -224,22 +219,22 @@ def plot_imshow(
     y: np.ndarray,
     data: np.ndarray,
     axe: matplotlib.axes._axes.Axes = None,
-    figsize: tuple[float] = None,
-    cmap: str = None,
-    minval: int | float = None,
-    maxval: int | float = None,
-    vmin: float = None,
-    vmax: float = None,
-    alpha: float = 1.,
-    minval_abs: float = None,
-    cmap_intervals:  tuple[int] | tuple[float] = None,
+    figsize: tuple[float] | None = None,
+    cmap: str | None = None,
+    minval: float | None = None,
+    maxval: float | None = None,
+    vmin: float | None = None,
+    vmax: float | None = None,
+    alpha: float = 1.0,
+    minval_abs: float | None = None,
+    cmap_intervals: tuple[float] | None = None,
     unique_values: bool = False,
     extend_cc: str = "max",
     plot_colorbar: bool = True,
     axecc: matplotlib.axes._axes.Axes = None,
-    colorbar_kwargs: dict = None,
-    aspect: str | float = None,
-    ) -> matplotlib.axes._axes.Axes:
+    colorbar_kwargs: dict | None = None,
+    aspect: float | None = None,
+) -> matplotlib.axes._axes.Axes:
     """
     plt.imshow data with some pre-processing.
 
@@ -341,7 +336,9 @@ def plot_imshow(
             values = np.unique(f[~np.isnan(f)])
         n_values = len(values)
         if isinstance(cmap, list):
-            color_map = mcolors.LinearSegmentedColormap.from_list('custom_cm', cmap, N=n_values)
+            color_map = mcolors.LinearSegmentedColormap.from_list(
+                "custom_cm", cmap, N=n_values
+            )
         else:
             color_map = matplotlib.cm.get_cmap(cmap, n_values)
         bounds = np.zeros(n_values + 1)
@@ -354,16 +351,14 @@ def plot_imshow(
     else:
         if (maxval * minval >= 0) or np.isnan(maxval * minval):
             if isinstance(cmap, list):
-                color_map = mcolors.LinearSegmentedColormap.from_list('custom_cm', cmap)
+                color_map = mcolors.LinearSegmentedColormap.from_list("custom_cm", cmap)
             else:
                 color_map = matplotlib.colormaps[cmap]
         else:
             color_map = centered_map(cmap, minval, maxval)
 
     if cmap_intervals is not None and not unique_values:
-        norm = matplotlib.colors.BoundaryNorm(
-            cmap_intervals, 256, extend=extend_cc
-        )
+        norm = matplotlib.colors.BoundaryNorm(cmap_intervals, 256, extend=extend_cc)
         maxval = None
         minval = None
 
@@ -395,7 +390,7 @@ def plot_imshow(
         cb = axe.figure.colorbar(fim, cax=axecc, **colorbar_kwargs)
         if unique_values:
             cb.set_ticks(
-                [(b0 + b1) / 2 for b0, b1 in zip(bounds[:-1], bounds[1:])],
+                [(b0 + b1) / 2 for b0, b1 in itertools.pairwise(bounds)],
                 labels=values,
             )
 
@@ -408,27 +403,27 @@ def plot_data_on_topo(
     z: np.ndarray,
     data: np.ndarray,
     axe: matplotlib.axes._axes.Axes = None,
-    figsize: tuple[float] = None,
-    cmap: str = None,
-    minval: int | float = None,
-    maxval: int | float = None,
-    vmin: float = None,
-    vmax: float = None,
-    minval_abs: float = None,
-    cmap_intervals: tuple[int] | tuple[float] = None,
+    figsize: tuple[float] | None = None,
+    cmap: str | None = None,
+    minval: float | None = None,
+    maxval: float | None = None,
+    vmin: float | None = None,
+    vmax: float | None = None,
+    minval_abs: float | None = None,
+    cmap_intervals: tuple[float] | None = None,
     unique_values: bool = False,
     extend_cc: str = "max",
-    topo_kwargs: dict = None,
-    alpha: float = 1.,
+    topo_kwargs: dict | None = None,
+    alpha: float = 1.0,
     plot_colorbar: bool = True,
     axecc: matplotlib.axes._axes.Axes = None,
-    colorbar_kwargs: dict = None,
+    colorbar_kwargs: dict | None = None,
     mask: np.ndarray = None,
-    alpha_mask: float = None,
+    alpha_mask: float | None = None,
     color_mask: str = "k",
-    xlims: int | float = None,
-    ylims: int | float = None,
-    ) -> matplotlib.axes._axes.Axes:
+    xlims: float | None = None,
+    ylims: float | None = None,
+) -> matplotlib.axes._axes.Axes:
     """
     Plot array data on topo.
 
@@ -496,7 +491,7 @@ def plot_data_on_topo(
     dy = y[1] - y[0]
     im_extent = [x[0] - dx / 2, x[-1] + dx / 2, y[0] - dy / 2, y[-1] + dy / 2]
     if axe is None:
-        fig, axe = plt.subplots(1, 1, figsize=figsize, layout="constrained")
+        _, axe = plt.subplots(1, 1, figsize=figsize, layout="constrained")
 
     axe.set_ylabel("Y (m)")
     axe.set_xlabel("X (m)")
@@ -560,16 +555,16 @@ def plot_maps(
     z: np.ndarray,
     data: np.ndarray,
     t: np.ndarray,
-    file_name: str = None,
-    folder_out: str = None,
-    figsize: tuple[float] = None,
-    dpi: int = None,
+    file_name: str | None = None,
+    folder_out: str | None = None,
+    figsize: tuple[float] | None = None,
+    dpi: int | None = None,
     fmt: str = "png",
     sup_plt_fn=None,
     sup_plt_fn_args=None,
-    **kwargs
-    ) -> None:
-    """    
+    **kwargs,
+) -> None:
+    """
     Plot and save maps of simulations outputs at successive time steps
 
     Parameters
@@ -603,9 +598,7 @@ def plot_maps(
     """
     nfigs = len(t)
     if nfigs != data.shape[2]:
-        raise ValueError(
-            "length of t must be similar to the last dimension of data"
-        )
+        raise ValueError("length of t must be similar to the last dimension of data")
     if folder_out is not None:
         file_path = os.path.join(folder_out, file_name + "_{:04d}." + fmt)
     title_fmt = "t = {:.2f} s"
@@ -617,7 +610,7 @@ def plot_maps(
         axe.set_title(title_fmt.format(t[i]))
         if sup_plt_fn is not None:
             if sup_plt_fn_args is None:
-                sup_plt_fn_args = dict()
+                sup_plt_fn_args = {}
             sup_plt_fn(axe, **sup_plt_fn_args)
         # axe.figure.tight_layout(pad=0.1)
         if folder_out is not None:
